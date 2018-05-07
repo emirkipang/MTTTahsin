@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textview_big">30sp</dimen>
+    <dimen name="textview_medium">22sp</dimen>
+    <dimen name="logo_height">175sp</dimen>
+    <dimen name="logo_width">175sp</dimen>
+</resources>

@@ -1,6 +1,7 @@
 package com.restuibu.emir.mtttahsin.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,29 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.restuibu.emir.mtttahsin.R;
+import com.restuibu.emir.mtttahsin.activity.DetailActivity;
+import com.restuibu.emir.mtttahsin.activity.MainActivity;
+import com.restuibu.emir.mtttahsin.model.Hijaiyah;
+import com.restuibu.emir.mtttahsin.util.Constant;
+import com.restuibu.emir.mtttahsin.util.Helper;
+
+import java.util.ArrayList;
 
 public class GridViewAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<Hijaiyah> hijaiyahs = new ArrayList<>();
 
     public GridViewAdapter(Context c) {
         mContext = c;
+        hijaiyahs = Helper.getAllHijaiyah();
+
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return Constant.hijaiyah.length;
     }
 
     public Object getItem(int position) {
@@ -32,8 +44,9 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
+
 
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -44,20 +57,23 @@ public class GridViewAdapter extends BaseAdapter {
             holder.image = (ImageView) convertView.findViewById(R.id.imageView1);
 
             // if it's not recycled, initialize some attributes
-            holder.image.setImageResource(mThumbIds[position]);
-            holder.text.setText(Integer.toString(position));
+            final Hijaiyah h = hijaiyahs.get(position);
 
-            int h = mContext.getResources().getDisplayMetrics().densityDpi;
-
-            //holder.image.setLayoutParams(new LayoutParams(h-50,h-50));
-            convertView.setLayoutParams(new GridView.LayoutParams(h-50, h-39));
-            //holder.image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //holder.image.setScaleType(ImageView.ScaleType.FIT_XY);
-
-            // convertView.setLayoutParams(new GridView.LayoutParams(Utils
-            // .getLayoutParameter(), Utils.getLayoutParameter()+50));
+            holder.image.setImageResource(h.getImg());
+            holder.text.setText(h.getNama());
 
 
+            // listener
+            holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Helper.callIntent(mContext, DetailActivity.class, h);
+                }
+            });
+
+            int h_ = mContext.getResources().getDisplayMetrics().densityDpi;
+
+            convertView.setLayoutParams(new GridView.LayoutParams(h_ - 50, h_ - 39));
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -66,15 +82,7 @@ public class GridViewAdapter extends BaseAdapter {
     }
 
     // references to our images
-    private Integer[] mThumbIds = {
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher
-    };
+
 
     static class ViewHolder {
         LinearLayout linearLayout;

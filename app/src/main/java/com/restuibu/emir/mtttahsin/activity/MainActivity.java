@@ -26,17 +26,6 @@ public class MainActivity extends AppCompatActivity {
         GridView gridview = (GridView) findViewById(R.id.gridView1);
         gridview.setAdapter(new GridViewAdapter(this));
 
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(MainActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-//        Toast.makeText(this, "hello guys hehe haha hoho", Toast.LENGTH_LONG).show();
-
 
     }
 }

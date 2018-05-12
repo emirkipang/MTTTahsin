@@ -34,6 +34,8 @@ public class Helper {
             h.setImg(Constant.hijaiyah[i]);
             h.setMakhraj(Constant.makhraj[i]);
             h.setSifat(Constant.sifat[i]);
+            h.setRecord(Constant.record[i]);
+            h.setKalimat(Constant.kalimat[i]);
             list.add(h);
         }
 
@@ -74,6 +76,8 @@ public class Helper {
         intent.putExtra("makhraj", h.getMakhraj());
         intent.putExtra("sifat", h.getSifat());
         intent.putExtra("index", Integer.toString(h.getIndex()));
+        intent.putExtra("record", Integer.toString(h.getRecord()));
+        intent.putExtra("kalimat", Integer.toString(h.getKalimat()));
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         from.startActivity(intent);
     }

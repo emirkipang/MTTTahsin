@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="#ff0"
+            android:background="@color/grey2"
             android:orientation="vertical"
             android:padding="@dimen/layout_padding_medium">
 
@@ -28,33 +28,33 @@
 
             <Button
                 android:id="@+id/button1"
-                android:text="Play"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Play" />
 
             <Button
                 android:id="@+id/button2"
-                android:text="Next"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Next" />
 
             <Button
                 android:id="@+id/button3"
-                android:text="Prev"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Prev" />
         </LinearLayout>
 
         <LinearLayout
-            android:padding="7dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#f00"
-            android:orientation="vertical">
+            android:background="@color/grey2"
+            android:orientation="vertical"
+            android:padding="7dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,50 +63,82 @@
                 android:background="#fff"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/layout_padding_small"
-                    android:background="#0ff"
-                    android:textStyle="bold"
-                    android:text="MAKHRAJ"/>
+                    android:background="@color/red_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/layout_padding_small">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MAKHRAJ"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/guideIV1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_help" />
+                </LinearLayout>
+
 
                 <TextView
-                    android:padding="7dp"
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:scrollbars = "vertical"
-                    android:text="1. asdasdasd"/>
+                    android:padding="7dp"
+                    android:scrollbars="vertical"
+                    android:text="1. asdasdasd"
+                    android:textSize="@dimen/textview_desc" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="@dimen/layout_padding_medium"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/layout_padding_medium"
                 android:layout_weight="1"
                 android:background="#fff"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/layout_padding_small"
-                    android:background="#0ff"
-                    android:textStyle="bold"
-                    android:text="SIFAT"/>
+                    android:background="@color/red_bg"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/layout_padding_small">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="SIFAT"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/guideIV2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/ic_menu_help" />
+                </LinearLayout>
+
 
                 <TextView
-                    android:padding="@dimen/layout_padding_medium"
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:scrollbars = "vertical"
-                    android:text="1. asdasdasd"/>
+                    android:padding="@dimen/layout_padding_medium"
+                    android:scrollbars="vertical"
+                    android:text="1. asdasdasd"
+                    android:textSize="@dimen/textview_desc" />
             </LinearLayout>
         </LinearLayout>
 

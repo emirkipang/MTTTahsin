@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_background"
+    android:background="@color/red_bg"
     tools:context=".activity.SplashActivity">
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/imageView1"
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
-        android:background="@mipmap/ic_launcher"
+        android:background="@mipmap/ic_launcher_round"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textColor="@color/textColor"
+        android:textColor="@color/white"
         android:textSize="@dimen/textview_big"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -2,9 +2,11 @@ package com.restuibu.emir.mtttahsin.activity;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,13 +14,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.restuibu.emir.mtttahsin.R;
 import com.restuibu.emir.mtttahsin.model.Hijaiyah;
 import com.restuibu.emir.mtttahsin.util.Helper;
+import com.restuibu.emir.mtttahsin.util.ScaleImageView;
 
 public class DetailActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
+    private String nama, nama_next, nama_prev, makhraj, sifat;
+    private Integer img, index, record, kalimat;
+    private boolean flag;
+    private Button playBtn;
+    private ImageView makhrajGuideIV, sifatGuideIV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +35,26 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         Bundle bundle = getIntent().getExtras();
-        String nama = bundle.getString("nama");
-        final String nama_next = bundle.getString("nama_next");
-        final String nama_prev = bundle.getString("nama_prev");
-        Integer img = Integer.parseInt(bundle.getString("img"));
-        String makhraj = bundle.getString("makhraj");
-        String sifat = bundle.getString("sifat");
-        final Integer index = Integer.parseInt(bundle.getString("index"));
+        nama = bundle.getString("nama");
+        nama_next = bundle.getString("nama_next");
+        nama_prev = bundle.getString("nama_prev");
+        img = Integer.parseInt(bundle.getString("img"));
+        makhraj = bundle.getString("makhraj");
+        sifat = bundle.getString("sifat");
+        index = Integer.parseInt(bundle.getString("index"));
+        record = Integer.parseInt(bundle.getString("record"));
+        kalimat = Integer.parseInt(bundle.getString("kalimat"));
+
+
 
         ImageView imgIv = (ImageView) findViewById(R.id.imageView1);
         TextView makhrajTv = (TextView) findViewById(R.id.textView1);
         TextView sifatTv = (TextView) findViewById(R.id.textView2);
-        Button playBtn = (Button) findViewById(R.id.button1);
+        playBtn = (Button) findViewById(R.id.button1);
         Button nextBtn = (Button) findViewById(R.id.button2);
         Button prevBtn = (Button) findViewById(R.id.button3);
+        makhrajGuideIV = (ImageView) findViewById(R.id.guideIV1);
+        sifatGuideIV = (ImageView) findViewById(R.id.guideIV2);
 
         Helper.changeActionBarTitle(this, nama);
         imgIv.setImageResource(img);
@@ -56,12 +71,19 @@ public class DetailActivity extends AppCompatActivity {
             prevBtn.setEnabled(false);
         }
 
+        flag = true;
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.alif_hamzah);
-
-                mediaPlayer.start();
+                if (flag) {
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), record);
+                    mediaPlayer.start();
+                    showDialog();
+                } else {
+                    mediaPlayer.stop();
+                    playBtn.setText("PLAY");
+                    flag = true;
+                }
             }
         });
 
@@ -78,6 +100,21 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Hijaiyah h = Helper.getDetilHijaiyah(index - 1);
                 Helper.callIntent(DetailActivity.this, DetailActivity.class, h);
+            }
+        });
+
+        makhrajGuideIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(DetailActivity.this, "guide makhraj", Toast.LENGTH_SHORT).show();
+                showDialogHelp();
+            }
+        });
+
+        sifatGuideIV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(DetailActivity.this, "guide sifat", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -101,7 +138,11 @@ public class DetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 //your action
-                Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.item2:
+                //your action
+                Toast.makeText(this, "Install other apps", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
@@ -113,9 +154,84 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
 
+        }
+
+    }
+
+
+    private void showDialog() {
+        LayoutInflater inflater = LayoutInflater
+                .from(DetailActivity.this);
+        View dialogview = inflater.inflate(R.layout.help_dialog,
+                null);
+        final ImageView imageView1 = (ImageView) dialogview
+                .findViewById(R.id.imageView1);
+        final Button button1 = (Button) dialogview
+                .findViewById(R.id.button1);
+        imageView1.setImageResource(kalimat);
+        button1.setVisibility(View.VISIBLE);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                // TODO Auto-generated method stub
+
+                mediaPlayer.stop();
+                mediaPlayer = MediaPlayer.create(
+                        getApplicationContext(), record);
+                mediaPlayer.start();
+
+                mediaPlayer
+                        .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
+                                playBtn.setText("PLAY");
+                                flag = true;
+                            }
+                        });
+
+                playBtn.setText("STOP");
+
+
+            }
+        });
+
+        final AlertDialog alert = new AlertDialog.Builder(
+                DetailActivity.this).create();
+        alert.setView(dialogview);
+        alert.show();
+
+        mediaPlayer
+                .setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        playBtn.setText("PLAY");
+                        flag = true;
+                    }
+                });
+
+        playBtn.setText("STOP");
+        flag = false;
+    }
+
+    public void showDialogHelp() {
+        LayoutInflater inflater = LayoutInflater.from(DetailActivity.this);
+        View dialogview = inflater.inflate(R.layout.help_dialog, null);
+        final ScaleImageView imageView1 = (ScaleImageView) dialogview
+                .findViewById(R.id.imageView1);
+        imageView1.setImageResource(R.drawable.makhrojulhuruf);
+
+        final AlertDialog alert = new AlertDialog.Builder(DetailActivity.this).create();
+        alert.setView(dialogview);
+        alert.show();
     }
 
 

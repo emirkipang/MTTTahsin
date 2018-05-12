@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item1"
-        app:showAsAction="always"
-        android:title="Petunjuk"></item>
+        app:showAsAction="collapseActionView"
+        android:title="@string/menu_about"></item>
+
+    <item
+        android:id="@+id/item2"
+        app:showAsAction="collapseActionView"
+        android:title="@string/menu_other_apps"></item>
 </menu>

@@ -8,13 +8,16 @@ import android.os.Bundle;
 
 import com.restuibu.emir.mtttahsin.R;
 import com.restuibu.emir.mtttahsin.util.Constant;
+import com.restuibu.emir.mtttahsin.util.Helper;
 
-public class SplashActivity extends Activity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        Helper.hideActionBar(this);
 
         new Handler().postDelayed(new Runnable() {
 

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MTTTahsin</string>
     <string name="app_version">1.0</string>
+    <string name="menu_other_apps">Install Aplikasi Lainnya</string>
+    <string name="menu_about">Tentang</string>
+
 </resources>

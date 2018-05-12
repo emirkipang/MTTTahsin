@@ -2,6 +2,7 @@
 <resources>
     <dimen name="textview_big">30dp</dimen>
     <dimen name="textview_medium">22dp</dimen>
+    <dimen name="textview_desc">16dp</dimen>
     <dimen name="logo_height">175dp</dimen>
     <dimen name="logo_width">175dp</dimen>
     <dimen name="layout_padding_small">3dp</dimen>

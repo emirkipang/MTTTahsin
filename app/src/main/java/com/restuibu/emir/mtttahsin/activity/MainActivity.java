@@ -1,19 +1,15 @@
 package com.restuibu.emir.mtttahsin.activity;
 
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
 import com.restuibu.emir.mtttahsin.R;
-import com.restuibu.emir.mtttahsin.adapter.GridViewAdapter;
+import com.restuibu.emir.mtttahsin.adapter.MainGridViewAdapter;
 import com.restuibu.emir.mtttahsin.util.Helper;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         GridView gridview = (GridView) findViewById(R.id.gridView1);
-        gridview.setAdapter(new GridViewAdapter(this));
+        gridview.setAdapter(new MainGridViewAdapter(this));
 
 
     }
@@ -45,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item1:
                 //your action
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                Helper.callIntent(MainActivity.this, AboutActivity.class);
                 break;
             case R.id.item2:
                 //your action

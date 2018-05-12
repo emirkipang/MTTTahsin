@@ -1,7 +1,6 @@
 package com.restuibu.emir.mtttahsin.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,25 +13,26 @@ import android.widget.Toast;
 
 import com.restuibu.emir.mtttahsin.R;
 import com.restuibu.emir.mtttahsin.activity.DetailActivity;
-import com.restuibu.emir.mtttahsin.activity.MainActivity;
-import com.restuibu.emir.mtttahsin.model.Hijaiyah;
+import com.restuibu.emir.mtttahsin.model.About;
 import com.restuibu.emir.mtttahsin.util.Constant;
 import com.restuibu.emir.mtttahsin.util.Helper;
 
 import java.util.ArrayList;
 
-public class GridViewAdapter extends BaseAdapter {
+public class AboutListViewAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<Hijaiyah> hijaiyahs = new ArrayList<>();
+    private ArrayList<About> Abouts = new ArrayList<>();
+    private String jenis;
 
-    public GridViewAdapter(Context c) {
+    public AboutListViewAdapter(Context c, String jenis) {
         mContext = c;
-        hijaiyahs = Helper.getAllHijaiyah();
+        this.jenis = jenis;
+        Abouts = Helper.getAllAbout(jenis);
 
     }
 
     public int getCount() {
-        return Constant.hijaiyah.length;
+        return Abouts.size();
     }
 
     public Object getItem(int position) {
@@ -50,30 +50,29 @@ public class GridViewAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.layout_grid, null);
+            convertView = mInflater.inflate(R.layout.layout_about, null);
             holder = new ViewHolder();
             holder.linearLayout = (LinearLayout) convertView.findViewById(R.id.linearLayout1);
             holder.text = (TextView) convertView.findViewById(R.id.textView1);
             holder.image = (ImageView) convertView.findViewById(R.id.imageView1);
 
             // if it's not recycled, initialize some attributes
-            final Hijaiyah h = hijaiyahs.get(position);
+            final About a = Abouts.get(position);
 
-            holder.image.setImageResource(h.getImg());
-            holder.text.setText(h.getNama());
+            holder.image.setImageResource(a.getImg());
+            holder.text.setText(a.getDesc());
 
-
-            // listener
             holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    Helper.callIntent(mContext, DetailActivity.class, h);
+                public void onClick(View v) {
+                    switch (jenis){
+                        case "sosmed":
+                            Helper.callIntent(mContext, a.getUrl());
+                            break;
+                    }
                 }
             });
 
-            int h_ = mContext.getResources().getDisplayMetrics().densityDpi;
-
-            convertView.setLayoutParams(new GridView.LayoutParams(h_ - 50, h_ - 39));
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

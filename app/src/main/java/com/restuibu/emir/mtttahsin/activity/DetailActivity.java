@@ -126,32 +126,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the main_menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.item1:
-                //your action
-                Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.item2:
-                //your action
-                Toast.makeText(this, "Install other apps", Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-        return true;
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         if (mediaPlayer != null) {
@@ -234,5 +208,31 @@ public class DetailActivity extends AppCompatActivity {
         alert.show();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the main_menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.item1:
+                //your action
+                //Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
+                Helper.callIntent(DetailActivity.this, AboutActivity.class);
+                break;
+            case R.id.item2:
+                //your action
+                Toast.makeText(this, "Install other apps", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
+    }
 
 }

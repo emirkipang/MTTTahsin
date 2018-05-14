@@ -90,6 +90,7 @@
                     android:text="@string/info_konfirmasi"/>
 
                 <TextView
+
                     android:padding="@dimen/layout_padding_small"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

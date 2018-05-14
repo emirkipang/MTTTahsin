@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class MainGridViewAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Hijaiyah> hijaiyahs = new ArrayList<>();
+    private int i = 0;
 
     public MainGridViewAdapter(Context c) {
         mContext = c;
@@ -45,41 +46,41 @@ public class MainGridViewAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(final int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
-
-        if (convertView == null) {
-            LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.layout_grid, null);
-            holder = new ViewHolder();
-            holder.linearLayout = (LinearLayout) convertView.findViewById(R.id.linearLayout1);
-            holder.text = (TextView) convertView.findViewById(R.id.textView1);
-            holder.image = (ImageView) convertView.findViewById(R.id.imageView1);
-
-            // if it's not recycled, initialize some attributes
-            final Hijaiyah h = hijaiyahs.get(position);
-
-            holder.image.setImageResource(h.getImg());
-            holder.text.setText(h.getNama());
-
-
-            // listener
-            holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Helper.callIntent(mContext, DetailActivity.class, h);
-                }
-            });
-
-            int h_ = mContext.getResources().getDisplayMetrics().densityDpi;
-
-            convertView.setLayoutParams(new GridView.LayoutParams(h_ - 50, h_ - 39));
-            convertView.setTag(holder);
+        ViewHolder holder = new ViewHolder();
+        View v;
+        if (convertView == null) {  // if it's not recycled, initialize some attributes
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(     Context.LAYOUT_INFLATER_SERVICE );
+            v = inflater.inflate(R.layout.layout_grid, parent, false);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            v = (View) convertView;
         }
-        return convertView;
+        holder.linearLayout = (LinearLayout) v.findViewById(R.id.linearLayout1);
+        holder.text = (TextView) v.findViewById(R.id.textView1);
+        holder.image = (ImageView) v.findViewById(R.id.imageView1);
+
+        // if it's not recycled, initialize some attributes
+        final Hijaiyah h = hijaiyahs.get(position);
+
+        holder.image.setImageResource(h.getImg());
+        holder.text.setText(h.getNama());
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Helper.callIntent(mContext, DetailActivity.class, h);
+            }
+        });
+
+        int h_ = mContext.getResources().getDisplayMetrics().densityDpi;
+        v.setLayoutParams(new GridView.LayoutParams(h_ - 50, h_ - 39));
+        v.setTag(holder);
+
+        return v;
+
+
+
     }
+
+
 
     // references to our images
 

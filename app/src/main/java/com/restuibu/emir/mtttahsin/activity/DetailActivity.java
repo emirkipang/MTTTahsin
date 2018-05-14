@@ -1,6 +1,6 @@
 package com.restuibu.emir.mtttahsin.activity;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +10,17 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.restuibu.emir.mtttahsin.R;
 import com.restuibu.emir.mtttahsin.model.Hijaiyah;
+import com.restuibu.emir.mtttahsin.util.Constant;
 import com.restuibu.emir.mtttahsin.util.Helper;
 import com.restuibu.emir.mtttahsin.util.ScaleImageView;
 
@@ -44,7 +47,6 @@ public class DetailActivity extends AppCompatActivity {
         index = Integer.parseInt(bundle.getString("index"));
         record = Integer.parseInt(bundle.getString("record"));
         kalimat = Integer.parseInt(bundle.getString("kalimat"));
-
 
 
         ImageView imgIv = (ImageView) findViewById(R.id.imageView1);
@@ -78,7 +80,7 @@ public class DetailActivity extends AppCompatActivity {
                 if (flag) {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), record);
                     mediaPlayer.start();
-                    showDialog();
+                    showDialogKalimat();
                 } else {
                     mediaPlayer.stop();
                     playBtn.setText("PLAY");
@@ -107,14 +109,15 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(DetailActivity.this, "guide makhraj", Toast.LENGTH_SHORT).show();
-                showDialogHelp();
+                showDialogHelpMakhraj();
             }
         });
 
         sifatGuideIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailActivity.this, "guide sifat", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DetailActivity.this, "guide sifat", Toast.LENGTH_SHORT).show();
+                showDialogHelpSifat();
             }
         });
     }
@@ -140,10 +143,10 @@ public class DetailActivity extends AppCompatActivity {
     }
 
 
-    private void showDialog() {
+    private void showDialogKalimat() {
         LayoutInflater inflater = LayoutInflater
                 .from(DetailActivity.this);
-        View dialogview = inflater.inflate(R.layout.help_dialog,
+        View dialogview = inflater.inflate(R.layout.help_makhraj_dialog,
                 null);
         final ImageView imageView1 = (ImageView) dialogview
                 .findViewById(R.id.imageView1);
@@ -196,12 +199,37 @@ public class DetailActivity extends AppCompatActivity {
         flag = false;
     }
 
-    public void showDialogHelp() {
+    public void showDialogHelpMakhraj() {
         LayoutInflater inflater = LayoutInflater.from(DetailActivity.this);
-        View dialogview = inflater.inflate(R.layout.help_dialog, null);
+        View dialogview = inflater.inflate(R.layout.help_makhraj_dialog, null);
         final ScaleImageView imageView1 = (ScaleImageView) dialogview
                 .findViewById(R.id.imageView1);
         imageView1.setImageResource(R.drawable.makhrojulhuruf);
+
+        final AlertDialog alert = new AlertDialog.Builder(DetailActivity.this).create();
+        alert.setView(dialogview);
+        alert.show();
+    }
+
+    public void showDialogHelpSifat() {
+        LayoutInflater inflater = LayoutInflater.from(DetailActivity.this);
+        View dialogview = inflater.inflate(R.layout.help_sifat_dialog, null);
+        ListView list = (ListView) dialogview.findViewById(R.id.listView1);
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Constant.detil_sifat) {
+
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        textView.setTextColor(Color.parseColor("#808080"));
+                        textView.setTextSize(12);
+
+                        return view;
+                    }
+                };
+        list.setAdapter(adapter);
 
         final AlertDialog alert = new AlertDialog.Builder(DetailActivity.this).create();
         alert.setView(dialogview);

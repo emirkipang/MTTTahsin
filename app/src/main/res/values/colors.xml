@@ -12,7 +12,6 @@
     <color name="red_bg">#F44336</color>
     <color name="red">#F44336</color>
     <color name="red_dark">#E53935</color>
-    <color name="textColor">#FFFFFF</color>
     <color name="blue_soft">#1FAEFF</color>
     <color name="yellow">#F4B300</color>
     <color name="brown">#004D60</color>
@@ -22,4 +21,5 @@
     <color name="soft_grey">#EBEBEB</color>
     <color name="grey_back">#cccccc</color>
     <color name="grey2">#f0f0f0</color>
+    <color name="black">#000</color>
 </resources>

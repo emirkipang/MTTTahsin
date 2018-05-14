@@ -86,6 +86,26 @@ public class Constant {
     };
 
 
+    // help sifat pop up dialog
+    public static final String[] detil_sifat = {
+            "Hams; keluar nafas ketika mengucapkan huruf, untuk memastikan keluar nafas atau tdk, cobalah huruf-huruf hams dibaca sukun dan di dahului dengan huruf Hamzah berharakat (أ ف). huruf hams ada 10. (ف ح ث ه ش خ ص س ك ت )",
+            "Jahr; lawan sifat hams, adalah tertahannya nafas/udara ketika mengucapkan huruf-huruf jahr. Khususnya ketika huruf-huruf tersebut sukun pastikan tdk ada nafas yg keluar, huruf-huruf jahr adalah selain huruf hams yg sepuluh",
+            "Syiddah; tekanan ke makroj kuat sehingga tidak menimbulkan durasi suara yg lama",
+            "Rokhowah; lawan dari syiddah, tekanan ke makhroj tidak  kuat/lemah sehingga menimbulkan durasi suara yag lama",
+            "Tawassuth; adalah sifat antara syiddah dan rokhowah tidak kuat dan tidak lemah",
+            "Isti'la; pangkal lidah diangkat menuju langit-langit sehingga menimbulkan suara tebal",
+            "Istifal; adalah lawan sifat isti'la, yaitu pangkal lidah tidak naik atau sejajar dengan ujung lidah sehingga menimbulkan suara tipis",
+            "Ithbaq; suara terkurung antara lidah dan langit-langit karena sebagian besar anggota lidah naik ke langit-langit",
+            "Infitah; lawan dari ithbaq, yaitu bagian depan lidah tidak terangkat ke langit-langit",
+            "adapun sifat idzlaq dan ithbaq bukan sifat cara pengucapan huruf tapi sifat lughowi (sifat untuk mengidentifikasi apakah kata tersebut bahasa arab atau bukan)",
+            "Shofir; adalah suara yang muncul dari ujung lidah dan ujung gigi bawah terdengar seperti suara burung",
+            "Qolqolah; suara memantul namun tidak sampai membuka mulut",
+            "Liin; pengucapan waw dan ya sukun di dahului huruf berharakat fathah dengan lunak",
+            "Inhirof; berbelok/ miring, yaitu berbeloknya udara yang akan keluar. untuk ro, udara berbelok dari sisi lidah menuju ujung lidah, sementara lam udara berbelok dari ujung lidah menuju sisi lidah",
+            "Tafasy-syi; udara memnuhi rongga mulut disebabkan tengah lidah naik",
+            "Isthitholah; memanjangnya suara dho (ض) disebabkan karena pergerakan sisi lidah bagian belakang menyentuh gigi graham dalam atas yg berjumlah lima buah"
+    };
+
 
 
 }

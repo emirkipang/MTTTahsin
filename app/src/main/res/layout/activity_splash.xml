@@ -12,7 +12,8 @@
         android:id="@+id/imageView1"
         android:layout_width="@dimen/logo_width"
         android:layout_height="@dimen/logo_height"
-        android:background="@mipmap/ic_launcher_round"
+        android:layout_marginLeft="17dp"
+        android:background="@drawable/mtt_tahsin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,26 +24,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textColor="@color/black"
+        android:textColor="#388E3C"
         android:textSize="@dimen/textview_big"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView1"
+
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_version"
-        android:textStyle="bold"
-        android:textSize="@dimen/textview_medium"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

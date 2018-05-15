@@ -1,6 +1,9 @@
 package com.restuibu.emir.mtttahsin.activity;
 
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,8 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.item2:
                 //your action
-                Toast.makeText(this, "Install other apps", Toast.LENGTH_SHORT).show();
-                break;
+                //Toast.makeText(this, "Install other apps", Toast.LENGTH_SHORT).show();
+                Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
+                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                try {
+                    startActivity(goToMarket);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("http://play.google.com/store/apps/details?id="
+                                    + this.getPackageName())));
+                }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

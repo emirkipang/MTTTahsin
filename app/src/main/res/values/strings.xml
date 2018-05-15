@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">MTT-Tahsin</string>
+    <string name="app_name">MTT Tahsin</string>
     <string name="app_version">1.0</string>
     <string name="menu_other_apps">Install Aplikasi Lainnya</string>
     <string name="menu_about">Tentang</string>
     <string name="info_konfirmasi">Konfirmasi donasi : 08119688688\nFormat : Name_Tgl Transfer_Rekening Tujuan_Nominal</string>
     <string name="info_copyright">Copyright © 2018 by MTT\nMTT Tahsin 1.0</string>
+    <string name="info_reference">Some icons made by Freepik from www.flaticon.com</string>
 </resources>

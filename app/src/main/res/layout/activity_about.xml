@@ -100,6 +100,16 @@
                     android:textStyle="bold"
                     android:layout_marginBottom="@dimen/layout_margin_small2"
                     android:text="@string/info_copyright"/>
+
+                <TextView
+                    android:padding="@dimen/layout_padding_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_margin_small2"
+                    android:textSize="@dimen/textview_small"
+                    android:textStyle="italic"
+                    android:layout_marginBottom="@dimen/layout_margin_small2"
+                    android:text="@string/info_reference"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

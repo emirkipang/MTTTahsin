@@ -13,5 +13,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:numColumns="4" />
+        android:numColumns="7" />
 </LinearLayout>

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:rotationY="180">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -13,9 +14,9 @@
         android:layout_marginLeft="@dimen/layout_margin_medium"
         android:layout_marginRight="@dimen/layout_margin_medium"
         android:layout_marginTop="@dimen/layout_margin_small"
+        android:background="@drawable/grid_color_selector"
         android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/grid_color_selector">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView1"
@@ -29,11 +30,11 @@
 
         <ImageView
             android:id="@+id/imageView1"
-            android:background="@color/grey2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/layout_padding_medium"
             android:layout_marginLeft="@dimen/layout_padding_medium"
+            android:layout_marginRight="@dimen/layout_padding_medium"
+            android:background="@color/grey2"
             app:srcCompat="@mipmap/ic_launcher" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
